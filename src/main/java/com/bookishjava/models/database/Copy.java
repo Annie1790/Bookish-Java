@@ -9,9 +9,11 @@ import jakarta.persistence.Id;
 public class Copy {
     private @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
+
+    //@foreign key
     private int book_id;
     private int user_id;
-    private boolean is_available;
+    public boolean is_available;
 
     public int getBook_id() {
         return book_id;
