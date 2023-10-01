@@ -11,6 +11,13 @@ public class Copy {
     @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
     //@foreign key
+    //embeddedid in the original one
+    //primary key getters and setters
+    //naming?
+
+    //create a pk database embeddedable
+    //object mapper needs to know in compile time what is a primary and foreign key
+    //jpa
     private int book_id;
     private int user_id;
     public boolean is_available;
