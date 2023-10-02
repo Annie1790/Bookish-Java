@@ -11,6 +11,8 @@ import com.bookishjava.models.database.Book;
 import com.bookishjava.repositories.BookRepository;
 import org.springframework.web.server.ResponseStatusException;
 
+import static java.lang.Long.parseLong;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/books")
@@ -39,6 +41,27 @@ public class BookController {
     @PostMapping("/new-book")
     public Book saveBook(@Validated @RequestBody Book newBook) {
         return repository.save(newBook);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void deleteBookById(@PathVariable Long id) {
+        if (id != null) {
+            repository.deleteById(id);
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(code = HttpStatus.OK)
+    public Book updateBookById(@Validated @RequestBody Book bookWithNewTitle) {
+        Book bookToUpdate = repository.findById(bookWithNewTitle.getId())
+                        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        bookToUpdate.setTitle(bookWithNewTitle.getTitle());
+        return repository.save(bookToUpdate);
+
+
     }
 
 }
