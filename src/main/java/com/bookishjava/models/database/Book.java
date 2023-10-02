@@ -7,6 +7,8 @@ public class Book {
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
     private String title;
 
+    private Long qty;
+
     public Long getId() {
         return id;
     }
@@ -18,6 +20,14 @@ public class Book {
     }
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Long getQty() {
+        return qty;
+    }
+
+    public void setQty(Long qty) {
+        this.qty = qty;
     }
 
     @Override

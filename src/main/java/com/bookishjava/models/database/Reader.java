@@ -16,4 +16,8 @@ public class Reader {
         return username;
     }
 
+    public void setUsername(String name) {this.username = name;}
+
+    public Long getId() {return this.id;}
+
 }
